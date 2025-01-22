@@ -13,7 +13,8 @@ Module.register("MMM-CountUP", {
     date: '2020-03-20', // YYYY-MM-DD
     time: '00:00:00', // HH:MM:SS
     showFullDate : false,
-    showOnlyWeeks: false
+    showOnlyWeeks: false,
+    showSeconds: true
   },
 
   getStyles: function() {
@@ -66,7 +67,7 @@ Module.register("MMM-CountUP", {
     hoursWrapper.className = 'digits'
     minutesWrapper.innerHTML = datesDifference.minute
     minutesWrapper.className = 'digits'
-    secondsWrapper.innerHTML = datesDifference.second
+    if(this.config.showSeconds){ secondsWrapper.innerHTML = datesDifference.second }
 
     infoRow.appendChild(yearsWrapper)
     infoRow.appendChild(monthsWrapper)
@@ -74,7 +75,7 @@ Module.register("MMM-CountUP", {
     infoRow.appendChild(daysWrapper)
     infoRow.appendChild(hoursWrapper)
     infoRow.appendChild(minutesWrapper)
-    infoRow.appendChild(secondsWrapper)
+    if(this.config.showSeconds){ infoRow.appendChild(secondsWrapper) }
 
     wrapper.appendChild(infoRow)
 
@@ -95,7 +96,8 @@ Module.register("MMM-CountUP", {
     textDaysWrapper.innerHTML = 'DAYS'
     textHoursWrapper.innerHTML = 'HOURS'
     textMinutesWrapper.innerHTML = 'MINUTES'
-    textSecondsWrapper.innerHTML = 'SECONDS'
+    if(this.config.showSeconds){ textSecondsWrapper.innerHTML = 'SECONDS' }
+    
 
     textsRow.appendChild(textYearsWrapper)
     textsRow.appendChild(textMonthsWrapper)
@@ -103,7 +105,7 @@ Module.register("MMM-CountUP", {
     textsRow.appendChild(textDaysWrapper)
     textsRow.appendChild(textHoursWrapper)
     textsRow.appendChild(textMinutesWrapper)
-    textsRow.appendChild(textSecondsWrapper)
+    if(this.config.showSeconds){ textsRow.appendChild(textSecondsWrapper) }
 
     wrapper.appendChild(textsRow)
     
@@ -122,7 +124,7 @@ Module.register("MMM-CountUP", {
       minutesWrapper.className += ' none'
       textMinutesWrapper.className += ' none'
       secondsWrapper.className += ' none'
-      textSecondsWrapper.className += ' none'
+      if(this.config.showSeconds){ textSecondsWrapper.className += ' none' }
 
       return wrapper
     }
